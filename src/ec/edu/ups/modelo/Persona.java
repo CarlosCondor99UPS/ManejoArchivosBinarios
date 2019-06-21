@@ -14,8 +14,9 @@ import java.util.Objects;
 public class Persona {
     private String nombre;
     private String apellido;
-    private String cedula;
     private int edad;
+    private String cedula;
+    private String celular;
     private String fechaNacimiento;
     private double salario;
 
@@ -69,6 +70,16 @@ public class Persona {
     public void setSalario(double salario) {
         this.salario = salario;
     }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+    
+    
 
     @Override
     public int hashCode() {

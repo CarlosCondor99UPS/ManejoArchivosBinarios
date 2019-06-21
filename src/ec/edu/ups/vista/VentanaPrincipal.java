@@ -5,9 +5,13 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controladores.ControladorPersona;
+import ec.edu.ups.vistaPersona.VentanaBuscarPersona;
 import ec.edu.ups.vistaPersona.VentanaCrearPersona;
+import ec.edu.ups.vistaPersona.VentanaEliminarPersona;
+import ec.edu.ups.vistaPersona.VentanaListarPersonas;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.RandomAccessFile;
 
 /**
@@ -15,12 +19,17 @@ import java.io.RandomAccessFile;
  * @author tians
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    ControladorPersona controladorPersona;
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+        controladorPersona = new ControladorPersona();
+        File file=new File("personas.ups");
+        if (file.exists()){
+            file.delete();
+        }
         String ruta = "personas.ups";
         try {
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
@@ -41,6 +50,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MenuCrear = new javax.swing.JMenuItem();
+        MenuBuscar = new javax.swing.JMenuItem();
         MenuEliminar = new javax.swing.JMenuItem();
         MenuActualizar = new javax.swing.JMenuItem();
         MenuListar = new javax.swing.JMenuItem();
@@ -57,13 +67,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(MenuCrear);
 
+        MenuBuscar.setText("Buscar");
+        MenuBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuBuscarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuBuscar);
+
         MenuEliminar.setText("Eliminar");
+        MenuEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuEliminarActionPerformed(evt);
+            }
+        });
         jMenu1.add(MenuEliminar);
 
         MenuActualizar.setText("Actualizar");
         jMenu1.add(MenuActualizar);
 
         MenuListar.setText("Listar");
+        MenuListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuListarActionPerformed(evt);
+            }
+        });
         jMenu1.add(MenuListar);
 
         jMenuBar1.add(jMenu1);
@@ -85,11 +113,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCrearActionPerformed
-        VentanaCrearPersona ventanaCrear=new VentanaCrearPersona();
+        VentanaCrearPersona ventanaCrear=new VentanaCrearPersona(controladorPersona);
         ventanaCrear.setVisible(true);
         this.add(ventanaCrear);
         
     }//GEN-LAST:event_MenuCrearActionPerformed
+
+    private void MenuEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuEliminarActionPerformed
+        VentanaEliminarPersona ventanaEliminar=new VentanaEliminarPersona(controladorPersona);
+        ventanaEliminar.setVisible(true);
+        this.add(ventanaEliminar);
+    }//GEN-LAST:event_MenuEliminarActionPerformed
+
+    private void MenuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBuscarActionPerformed
+        VentanaBuscarPersona ventanaBuscar=new VentanaBuscarPersona(controladorPersona);
+        ventanaBuscar.setVisible(true);
+        this.add(ventanaBuscar);
+    }//GEN-LAST:event_MenuBuscarActionPerformed
+
+    private void MenuListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuListarActionPerformed
+        VentanaListarPersonas ventanaListar=new VentanaListarPersonas(controladorPersona);
+        ventanaListar.setVisible(true);
+        this.add(ventanaListar);
+    }//GEN-LAST:event_MenuListarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,6 +174,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuActualizar;
+    private javax.swing.JMenuItem MenuBuscar;
     private javax.swing.JMenuItem MenuCrear;
     private javax.swing.JMenuItem MenuEliminar;
     private javax.swing.JMenuItem MenuListar;

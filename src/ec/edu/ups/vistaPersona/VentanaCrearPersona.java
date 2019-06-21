@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vistaPersona;
 
+import ec.edu.ups.controladores.ControladorPersona;
+import ec.edu.ups.modelo.Persona;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,12 +14,13 @@ import javax.swing.JOptionPane;
  * @author tians
  */
 public class VentanaCrearPersona extends javax.swing.JInternalFrame {
-
+    ControladorPersona controladorPersona;
     /**
      * Creates new form VentanaCrearPersona
      */
-    public VentanaCrearPersona() {
+    public VentanaCrearPersona(ControladorPersona controladorPersona) {
         initComponents();
+        this.controladorPersona=controladorPersona;
     }
 
     /**
@@ -29,6 +32,7 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGuardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -42,13 +46,21 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
         txtFechaDia = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtSalario = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtFechaMes = new javax.swing.JTextField();
         txtFechaAno = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtCelular = new javax.swing.JTextField();
 
         setClosable(true);
+
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("CREAR PERSONA");
 
@@ -64,16 +76,11 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Salario:");
 
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-
         jLabel8.setText("/");
 
         jLabel9.setText("/");
+
+        jLabel10.setText("Celular:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,7 +96,7 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel4)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 179, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,9 +105,12 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtNombre))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCelular)
                                     .addComponent(txtApellido)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,28 +119,28 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtCedula))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(8, 8, 8)
-                                .addComponent(txtFechaDia, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(8, 8, 8)
+                                        .addComponent(txtFechaDia, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtFechaMes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFechaAno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                                .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(324, 324, 324)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnGuardar)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtFechaMes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtFechaAno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(193, 193, 193)
-                .addComponent(btnGuardar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,22 +161,30 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtFechaDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
+                    .addComponent(jLabel10)
+                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtFechaMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel9)
-                        .addComponent(txtFechaAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtFechaAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(txtFechaDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(btnGuardar)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnGuardar)
+                        .addGap(20, 20, 20))))
         );
 
         pack();
@@ -177,6 +195,7 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
         try {
             String nombre = txtNombre.getText();
             String apellido = txtApellido.getText();
+            String celular = txtCelular.getText();
             int edad = Integer.parseInt(txtEdad.getText());
             String fechaDia = txtFechaDia.getText();
             String fechaMes = txtFechaMes.getText();
@@ -185,31 +204,66 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
             double salario = Double.parseDouble(txtSalario.getText());
             nombre = validarNombre(nombre);
             apellido = validarApellido(apellido);
-            if (!validarCedula(cedula)){
+            if (nombre==null){
+                JOptionPane.showMessageDialog(this, "El nombre es mayor a 50 caracteres");
+                return;
+            } 
+            if (apellido==null){
+                JOptionPane.showMessageDialog(this, "El apellido es mayor a 50 caracteres");
+                return;
+            }
+            if (!validarCedula(cedula)) {
                 JOptionPane.showMessageDialog(this, "Cedula Incorrecta");
                 return;
             }
-            if (!validarFecha(fechaDia,fechaMes,fechaAno)){
+            if (!validarFecha(fechaDia, fechaMes, fechaAno)) {
                 return;
             }
-            if (!validarEdad(edad)){
+            if (!validarEdad(edad)) {
                 return;
             }
+            if (!validarCelular(celular)){
+                return;
+            }
+            if (Integer.parseInt(fechaDia)<10){
+                fechaDia="0"+fechaDia;
+            }
+            if (Integer.parseInt(fechaMes)<10){
+                fechaMes="0"+fechaMes;
+            }
+            Persona persona=new Persona();
+            persona.setNombre(nombre);
+            persona.setApellido(apellido);
+            persona.setCelular(celular);
+            persona.setCedula(cedula);
+            persona.setEdad(edad);
+            persona.setSalario(salario);
+            persona.setFechaNacimiento(fechaDia+"/"+fechaMes+"/"+fechaAno);
+            controladorPersona.crearPersona(persona);
+            this.dispose();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Edad o Salario incorrecto");
-        } 
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public String validarApellido(String apellido) {
-        while (apellido.length() != 50) {
-            apellido = apellido + " ";
+        if (apellido.length() > 50) {
+            return null;
+        } else {
+            while (apellido.length() < 50) {
+                apellido = apellido + " ";
+            }
         }
         return apellido;
     }
 
     public String validarNombre(String nombre) {
-        while (nombre.length() != 50) {
-            nombre = nombre + " ";
+        if (nombre.length() > 50) {
+            return null;
+        } else {
+            while (nombre.length() < 50) {
+                nombre = nombre + " ";
+            }
         }
         return nombre;
     }
@@ -248,39 +302,49 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
         }
         return cedulaCorrecta;
     }
-    public boolean validarFecha(String diaS, String mesS, String anoS){
+
+    public boolean validarFecha(String diaS, String mesS, String anoS) {
         try {
-            int dia=Integer.parseInt(diaS);
-            int mes=Integer.parseInt(mesS);
-            int ano=Integer.parseInt(anoS);
-            if (dia>30){
+            int dia = Integer.parseInt(diaS);
+            int mes = Integer.parseInt(mesS);
+            int ano = Integer.parseInt(anoS);
+            if (dia > 30) {
                 JOptionPane.showMessageDialog(this, "Dia incorrecto");
                 return false;
-            } 
-            if (mes>12){
+            }
+            if (mes > 12) {
                 JOptionPane.showMessageDialog(this, "Mes Incorrecto");
                 return false;
             }
-            if (ano>2019||ano<1900){
+            if (ano > 2019 || ano < 1900) {
                 JOptionPane.showMessageDialog(this, "Año Incorrecto");
                 return false;
             }
-        }catch (NumberFormatException ex){
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Fecha Incorrecta");
             return false;
         }
         return true;
     }
-    
-    public boolean validarEdad(int edad){
-        if (edad<0||edad>99)
+
+    public boolean validarEdad(int edad) {
+        if (edad < 0 || edad > 99) {
             return false;
+        }
         return true;
+    }
+
+    public boolean validarCelular(String celular) {
+        if (celular.length() == 10) {
+            return true;
+        }
+        return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -291,6 +355,7 @@ public class VentanaCrearPersona extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtFechaAno;
     private javax.swing.JTextField txtFechaDia;
